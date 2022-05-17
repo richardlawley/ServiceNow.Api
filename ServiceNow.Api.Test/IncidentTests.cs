@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using ServiceNow.Api.Tables;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -28,7 +29,7 @@ namespace ServiceNow.Api.Test
 			};
 
 			// Act
-			var createdIncident = await Client.CreateAsync(incident).ConfigureAwait(false);
+			var createdIncident = await Client.CreateAsync(incident, CancellationToken.None).ConfigureAwait(false);
 
 			// Assert
 			createdIncident.Should().NotBeNull();
